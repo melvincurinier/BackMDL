@@ -22,7 +22,7 @@ let dataLayer = {
         return;
     },
 
-    getCustomer: function (number, page) {
+    getCustomers: function (number, page) {
         const data = fs.readFileSync(filename);
 
         let customers = JSON.parse(data);

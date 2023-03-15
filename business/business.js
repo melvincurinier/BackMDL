@@ -18,7 +18,7 @@ const business = {
             number = maxNumber;
         }
 
-        const resCustomers = dal.getCustomer(number, page);
+        const resCustomers = dal.getCustomers(number, page);
 
         resCustomers.page = page;
         resCustomers.numberByPage = number;
