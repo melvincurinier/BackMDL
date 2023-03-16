@@ -19,7 +19,18 @@ let dataLayer = {
     },
 
     addCustomer: function (customer) {
-        return;
+        const data = fs.readFileSync(filename);
+
+        let customers = JSON.parse(data);
+
+        if(customers.length == 0){
+            customer.id = 1;
+        } else {
+            customer.id = customers[customers.length - 1].id + 1;
+        }
+        customer.created_at = (new Date()).toUTCString();
+        customers.push(customer);
+        fs.writeFileSync("./data/customers.json", JSON.stringify(customers));
     },
 
     getCustomers: function (number, page) {

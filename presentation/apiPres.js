@@ -12,6 +12,10 @@ const apiServ = {
             next();
         });
 
+        app.post("/api/addCustomer", function(req, res){
+            business.addCustomer(req.body);
+        });
+
         app.get("/api/customers", function(req, res){
             const number = req.query.number;
             const page = req.query.page;

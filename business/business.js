@@ -9,6 +9,19 @@ const business = {
         return dal.getAllCustomers();
     },
 
+    addCustomer : function(data){
+        let customer = {
+            id : null,
+            email : data.email,
+            first : data.first,
+            last : data.last,
+            company : data.company,
+            country : data.country,
+            created_at : null
+        }
+        dal.addCustomer(customer);
+    },
+
     getCustomers: function (number, page) {
         if (number === undefined || page === undefined) {
             number = defaultNumber;
