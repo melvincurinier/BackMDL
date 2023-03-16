@@ -28,7 +28,8 @@ let dataLayer = {
         } else {
             customer.id = customers[customers.length - 1].id + 1;
         }
-        customer.created_at = (new Date()).toUTCString();
+        var date = new Date();
+        customer.created_at = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
         customers.push(customer);
         fs.writeFileSync("./data/customers.json", JSON.stringify(customers));
     },

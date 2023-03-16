@@ -13,6 +13,7 @@ const apiServ = {
         });
 
         app.post("/api/addCustomer", function(req, res){
+            console.log(req.body);
             business.addCustomer(req.body);
         });
 
