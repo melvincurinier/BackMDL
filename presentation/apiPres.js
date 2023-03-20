@@ -1,4 +1,5 @@
 var express = require("express");
+const { modifCustomer } = require("../business/business");
 var business = require("../business/business");
 var app = express();
 
@@ -24,6 +25,12 @@ const apiServ = {
             const resCustomers = business.getCustomers(number, page);
 
             res.json(resCustomers);
+        });
+
+        app.post("/api/modifCustomer", function(req, res){
+            const id = req.query.id;
+
+            modifCustomer(id);
         });
 
         app.listen(port, function(){

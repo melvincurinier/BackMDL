@@ -38,6 +38,11 @@ const business = {
         resCustomers.totalPages = Math.ceil(resCustomers.total / number);
 
         return resCustomers;
+    },
+
+    modifCustomer: function(id){
+        let customer = dal.getCustomerById(id);
+        dal.modifCustomer(customer);
     }
 }
 
