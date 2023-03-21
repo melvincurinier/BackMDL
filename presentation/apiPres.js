@@ -6,18 +6,21 @@ const apiServ = {
     start: function (port) {
         app.use(express.json());
 
-        app.use(function(req, res, next) {  
+        app.use(function (req, res, next) {
             res.header("Access-Control-Allow-Origin", "*");
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             next();
         });
 
-        app.post("/api/addCustomer", function(req, res){
-            console.log(req.body);
-            business.addCustomer(req.body);
+        app.post("/api/addCustomer", function (req, res) {
+            let testEmail = /^[a-z0-9.-]{2,}@+[a-z0-9.-]{2,}$/i;
+            if (testEmail.test(req.body.email))
+                business.addCustomer(req.body);
+            else
+                res.json("Error");
         });
 
-        app.get("/api/customers", function(req, res){
+        app.get("/api/customers", function (req, res) {
             const number = req.query.number;
             const page = req.query.page;
 
@@ -26,19 +29,19 @@ const apiServ = {
             res.json(resCustomers);
         });
 
-        app.post("/api/modifCustomer", function(req, res){
+        app.post("/api/modifCustomer", function (req, res) {
             const id = req.query.id;
             const newCustomer = req.body;
 
             modifCustomer(id, newCustomer);
         });
 
-        app.delete("/api/deleteCustomer", function(req, res){
+        app.delete("/api/deleteCustomer", function (req, res) {
             const id = req.query.id;
             deleteCustomer(id);
         });
 
-        app.listen(port, function(){
+        app.listen(port, function () {
             console.log("Server running on port " + port);
         });
     }

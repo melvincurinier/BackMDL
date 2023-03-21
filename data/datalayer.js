@@ -24,7 +24,17 @@ function getNextId(customers, idCustomer) {
 }
 
 let dataLayer = {
-    addCustomer: function (customer) {
+    addCustomer: function (data) {
+        let customer = {
+            id : null,
+            email : data.email,
+            first : data.first,
+            last : data.last,
+            company : data.company,
+            country : data.country,
+            created_at : null
+        }
+
         let customers = getAllCustomers();
 
         if (customers.length == 0) {
@@ -32,8 +42,10 @@ let dataLayer = {
         } else {
             customer.id = customers[customers.length - 1].id + 1;
         }
+
         var date = new Date();
         customer.created_at = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+        
         customers.push(customer);
 
         fs.writeFileSync(filename, JSON.stringify(customers));

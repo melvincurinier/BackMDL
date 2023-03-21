@@ -10,16 +10,7 @@ const business = {
         return dal.getAllCustomers();
     },
 
-    addCustomer : function(data){
-        let customer = {
-            id : null,
-            email : data.email,
-            first : data.first,
-            last : data.last,
-            company : data.company,
-            country : data.country,
-            created_at : null
-        }
+    addCustomer: function (data) {
         dal.addCustomer(customer);
     },
 
@@ -28,7 +19,7 @@ const business = {
             number = defaultNumber;
             page = defaultPage;
         }
-        if(number > maxNumber){
+        if (number > maxNumber) {
             number = maxNumber;
         }
 
@@ -41,11 +32,11 @@ const business = {
         return resCustomers;
     },
 
-    modifCustomer: function(id, newCustomer){        
+    modifCustomer: function (id, newCustomer) {
         dal.modifCustomer(id, newCustomer);
     },
 
-    deleteCustomer: function(id){
+    deleteCustomer: function (id) {
         dal.deleteCustomer(id);
     }
 }

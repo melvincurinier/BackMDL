@@ -2,4 +2,4 @@
  Addition check
  Read check
  Modification check
- Delete
+ Delete check
