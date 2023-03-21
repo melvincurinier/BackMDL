@@ -1,5 +1,4 @@
 var express = require("express");
-const { modifCustomer } = require("../business/business");
 var business = require("../business/business");
 var app = express();
 
@@ -32,6 +31,11 @@ const apiServ = {
             const newCustomer = req.body;
 
             modifCustomer(id, newCustomer);
+        });
+
+        app.delete("/api/deleteCustomer", function(req, res){
+            const id = req.query.id;
+            deleteCustomer(id);
         });
 
         app.listen(port, function(){

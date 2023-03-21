@@ -1,6 +1,4 @@
 const fs = require("fs");
-const { get } = require("https");
-const { modifCustomer } = require("../business/business");
 
 const filename = "./data/customers.json";
 
@@ -16,11 +14,11 @@ function getAllCustomers() {
 }
 
 function getNextId(customers, idCustomer) {
-    let rank;
-    let compt = 0;
+    let rank = null;
+    let count = 0;
     for (let customer of customers) {
-        if (customer.id == idCustomer) rank = compt;
-        compt++;
+        if (customer.id == idCustomer) rank = count;
+        count++;
     }
     return rank;
 }
@@ -68,7 +66,7 @@ let dataLayer = {
         customer.last = customers[rank].last;
         customer.company = customers[rank].company;
         customer.country = customers[rank].country;
-        
+
         return customer;
     },
 
@@ -83,6 +81,18 @@ let dataLayer = {
         customers[rank].country = newCustomer.country;
 
         fs.writeFileSync(filename, JSON.stringify(customers));
+    },
+
+    deleteCustomer: function (id) {
+        const data = fs.readFileSync(filename);
+
+        let customers = JSON.parse(data);
+        let rank = getNextId(customers, id);
+        if (rank != null) {
+            customers.splice(rank - 1, 1);
+
+            fs.writeFileSync(filename, JSON.stringify(customers));
+        }
     }
 }
 

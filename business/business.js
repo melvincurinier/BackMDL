@@ -1,3 +1,4 @@
+const { deleteCustomer } = require("../data/datalayer");
 const dal = require("../data/datalayer");
 
 const defaultNumber = 10;
@@ -42,6 +43,10 @@ const business = {
 
     modifCustomer: function(id, newCustomer){        
         dal.modifCustomer(id, newCustomer);
+    },
+
+    deleteCustomer: function(id){
+        dal.deleteCustomer(id);
     }
 }
 
