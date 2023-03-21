@@ -18,8 +18,7 @@ function getAllCustomers() {
 function getNextId(customers, idCustomer) {
     let rank;
     let compt = 0;
-    for (let customer of customers)
-    {
+    for (let customer of customers) {
         if (customer.id == idCustomer) rank = compt;
         compt++;
     }
@@ -59,7 +58,8 @@ let dataLayer = {
         return result;
     },
 
-    getCustomerById: function(id){
+    getCustomerById: function (id) {
+        let customer = {};
         let customers = getAllCustomers();
         let rank = getNextId(customers, id);
 
@@ -68,13 +68,13 @@ let dataLayer = {
         customer.last = customers[rank].last;
         customer.company = customers[rank].company;
         customer.country = customers[rank].country;
-
+        
         return customer;
     },
 
-    modifCustomer: function (newCustomer) {
+    modifCustomer: function (id, newCustomer) {
         let customers = getAllCustomers();
-        let rank = getNextId(customers, newCustomer.id);
+        let rank = getNextId(customers, id);
 
         customers[rank].email = newCustomer.email;
         customers[rank].first = newCustomer.first;

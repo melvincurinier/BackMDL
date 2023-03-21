@@ -40,9 +40,8 @@ const business = {
         return resCustomers;
     },
 
-    modifCustomer: function(id){
-        let customer = dal.getCustomerById(id);
-        dal.modifCustomer(customer);
+    modifCustomer: function(id, newCustomer){        
+        dal.modifCustomer(id, newCustomer);
     }
 }
 

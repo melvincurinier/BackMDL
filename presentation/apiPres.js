@@ -29,8 +29,9 @@ const apiServ = {
 
         app.post("/api/modifCustomer", function(req, res){
             const id = req.query.id;
+            const newCustomer = req.body;
 
-            modifCustomer(id);
+            modifCustomer(id, newCustomer);
         });
 
         app.listen(port, function(){
