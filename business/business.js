@@ -11,7 +11,7 @@ const business = {
     },
 
     addCustomer: function (data) {
-        dal.addCustomer(customer);
+        dal.addCustomer(data);
     },
 
     getCustomers: function (number, page) {
