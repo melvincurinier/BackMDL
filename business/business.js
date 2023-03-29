@@ -32,6 +32,12 @@ const business = {
         return resCustomers;
     },
 
+    getCustomerById: function(id){
+        const resCustomer = dal.getCustomerById(id);
+
+        return resCustomer;
+    },
+
     modifCustomer: function (id, newCustomer) {
         dal.modifCustomer(id, newCustomer);
     },

@@ -33,6 +33,14 @@ const apiServ = {
             res.json(resCustomers);
         });
 
+        app.get("/api/customer", function(req, res){
+            const id = req.query.id;
+
+            const resCustomer = business.getCustomerById(id);
+
+            res.json(resCustomer);
+        });
+
         app.post("/api/modifCustomer", function (req, res) {
             const id = req.query.id;
             const newCustomer = req.body;
