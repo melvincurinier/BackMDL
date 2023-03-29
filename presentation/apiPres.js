@@ -12,12 +12,16 @@ const apiServ = {
             next();
         });
 
+        app.get("/api/test", function (req, res) {
+            res.json("test");
+        });
+
         app.post("/api/addCustomer", function (req, res) {
             let testEmail = /^[a-z0-9.-]{2,}@+[a-z0-9.-]{2,}$/i;
             if (testEmail.test(req.body.email))
                 business.addCustomer(req.body);
             else
-                res.json("Error");
+                res.json("Email error !");
         });
 
         app.get("/api/customers", function (req, res) {
@@ -33,7 +37,11 @@ const apiServ = {
             const id = req.query.id;
             const newCustomer = req.body;
 
-            modifCustomer(id, newCustomer);
+            let testEmail = /^[a-z0-9.-]{2,}@+[a-z0-9.-]{2,}$/i;
+            if (testEmail.test(req.body.email))
+                modifCustomer(id, newCustomer);
+            else
+                res.json("Email error !");
         });
 
         app.delete("/api/deleteCustomer", function (req, res) {
