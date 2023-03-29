@@ -7,7 +7,8 @@ const apiServ = {
         app.use(express.json());
 
         app.use(function (req, res, next) {
-            res.header("Access-Control-Allow-Origin", "*");
+            res.setHeader('Access-Control-Allow-Origin', '*');
+            res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             next();
         });
@@ -33,7 +34,7 @@ const apiServ = {
             res.json(resCustomers);
         });
 
-        app.get("/api/customer", function(req, res){
+        app.get("/api/customer", function (req, res) {
             const id = req.query.id;
 
             const resCustomer = business.getCustomerById(id);
@@ -54,7 +55,7 @@ const apiServ = {
 
         app.delete("/api/deleteCustomer", function (req, res) {
             const id = req.query.id;
-            deleteCustomer(id);
+            business.deleteCustomer(id);
         });
 
         app.listen(port, function () {

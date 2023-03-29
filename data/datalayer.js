@@ -101,7 +101,7 @@ let dataLayer = {
         let customers = JSON.parse(data);
         let rank = getNextId(customers, id);
         if (rank != null) {
-            customers.splice(rank - 1, 1);
+            customers.splice(rank, 1);
 
             fs.writeFileSync(filename, JSON.stringify(customers));
         }
