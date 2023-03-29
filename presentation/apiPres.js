@@ -47,7 +47,7 @@ const apiServ = {
 
             let testEmail = /^[a-z0-9.-]{2,}@+[a-z0-9.-]{2,}$/i;
             if (testEmail.test(req.body.email))
-                modifCustomer(id, newCustomer);
+                business.modifCustomer(id, newCustomer);
             else
                 res.json("Email error !");
         });
