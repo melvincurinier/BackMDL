@@ -2,6 +2,8 @@ var express = require("express");
 var business = require("../business/business");
 var app = express();
 
+const testEmail = /^[a-z0-9.-]{2,}@+[a-z0-9.-]{2,}$/i;
+
 const apiServ = {
     start: function (port) {
         app.use(express.json());
@@ -14,15 +16,31 @@ const apiServ = {
         });
 
         app.get("/api/test", function (req, res) {
-            res.json("test");
+            res.status(200).json({ message: "Server running" });
         });
 
         app.post("/api/addCustomer", function (req, res) {
-            let testEmail = /^[a-z0-9.-]{2,}@+[a-z0-9.-]{2,}$/i;
-            if (testEmail.test(req.body.email))
-                business.addCustomer(req.body);
-            else
-                res.json("Email error !");
+            try {
+                const newCustomer = req.body;
+
+                if (
+                    !newCustomer.first ||
+                    !newCustomer.last ||
+                    !newCustomer.email ||
+                    !newCustomer.company ||
+                    !newCustomer.country ||
+                    !testEmail.test(newCustomer.email)
+                ) {
+                    throw new Error("Invalid customer information");
+                }
+
+                business.addCustomer(newCustomer);
+
+                res.status(200).json({ message: "Customer added successfully" });
+            } catch (error) {
+                console.error(error);
+                res.status(400).json({ message: error.message });
+            }
         });
 
         app.get("/api/customers", function (req, res) {
@@ -43,19 +61,40 @@ const apiServ = {
         });
 
         app.post("/api/modifCustomer", function (req, res) {
-            const id = req.query.id;
-            const newCustomer = req.body;
+            try {
+                const customerId = req.query.id;
+                const updatedCustomer = req.body;
 
-            let testEmail = /^[a-z0-9.-]{2,}@+[a-z0-9.-]{2,}$/i;
-            if (testEmail.test(req.body.email))
-                business.modifCustomer(id, newCustomer);
-            else
-                res.json("Email error !");
+                if (
+                    !updatedCustomer.first ||
+                    !updatedCustomer.last ||
+                    !updatedCustomer.email ||
+                    !updatedCustomer.company ||
+                    !updatedCustomer.country ||
+                    !testEmail.test(updatedCustomer.email)
+                ) {
+                    throw new Error("Invalid customer information");
+                }
+
+                business.modifCustomer(customerId, updatedCustomer);
+
+                res.status(200).json({ message: "Customer updated successfully" });
+            } catch (error) {
+                console.error(error);
+                res.status(400).json({ message: error.message });
+            }
         });
 
         app.delete("/api/deleteCustomer", function (req, res) {
-            const id = req.query.id;
-            business.deleteCustomer(id);
+            try {
+                const id = req.query.id;
+                business.deleteCustomer(id);
+
+                res.status(200).json({ message: "Customer deleted successfully" });
+            } catch (error) {
+                console.error(error);
+                res.status(400).json({ message: error.message });
+            }
         });
 
         app.listen(port, function () {

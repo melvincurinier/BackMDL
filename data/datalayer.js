@@ -105,6 +105,9 @@ let dataLayer = {
 
             fs.writeFileSync(filename, JSON.stringify(customers));
         }
+        else{
+            throw new Error ("Id invalid");
+        }
     }
 }
 

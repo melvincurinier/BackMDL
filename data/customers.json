@@ -1,1 +1,20 @@
-[{"id":3,"email":"fredy54@gmail.com","first":"Hollis","last":"Swift","company":"Microsoft","created_at":"2014-08-18T06:15:16.731Z","country":"Algerie"},{"id":5,"email":"turner59@gmail.com","first":"Janelle","last":"Hagenes","company":"Amazon","created_at":"2014-04-21T15:05:43.229Z","country":"Swaziland"},{"id":6,"email":"halie47@yahoo.com","first":"Charity","last":"Bradtke","company":"Google","created_at":"2014-09-21T21:59:18.892Z","country":"Lebanon"}]
+[
+    {
+        "id": 3,
+        "email": "fredy54@gmail.com",
+        "first": "Hollis",
+        "last": "Swift",
+        "company": "Microsoft",
+        "created_at": "2014-08-18T06:15:16.731Z",
+        "country": "Angleterre"
+    },
+    {
+        "id": 6,
+        "email": "melvincurinier@gmail.com",
+        "first": "Melvin",
+        "last": "Curinier",
+        "company": "Dubois",
+        "country": "France",
+        "created_at": "20/4/2023"
+    }
+]
