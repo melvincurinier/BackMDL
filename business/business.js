@@ -43,6 +43,10 @@ const business = {
 
     deleteCustomer: function (id) {
         dal.deleteCustomer(id);
+    },
+
+    isEmailUsed: function(email){
+        return dal.isEmailUsed(email);
     }
 }
 

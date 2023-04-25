@@ -26,13 +26,13 @@ function getNextId(customers, idCustomer) {
 let dataLayer = {
     addCustomer: function (data) {
         let customer = {
-            id : null,
-            email : data.email,
-            first : data.first,
-            last : data.last,
-            company : data.company,
-            country : data.country,
-            created_at : null
+            id: null,
+            email: data.email,
+            first: data.first,
+            last: data.last,
+            company: data.company,
+            country: data.country,
+            created_at: null
         }
 
         let customers = getAllCustomers();
@@ -45,7 +45,7 @@ let dataLayer = {
 
         var date = new Date();
         customer.created_at = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
-        
+
         customers.push(customer);
 
         fs.writeFileSync(filename, JSON.stringify(customers));
@@ -105,9 +105,19 @@ let dataLayer = {
 
             fs.writeFileSync(filename, JSON.stringify(customers));
         }
-        else{
-            throw new Error ("Id invalid");
+        else {
+            throw new Error("Id invalid");
         }
+    },
+
+    isEmailUsed: function (email) {
+        let customers = getAllCustomers();
+        for (let customer of customers) {
+            if (customer.email == email){
+                return true;
+            }
+        }
+        return false;
     }
 }
 

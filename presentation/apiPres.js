@@ -33,6 +33,9 @@ const apiServ = {
                 ) {
                     throw new Error("Invalid customer information");
                 }
+                if (business.isEmailUsed(newCustomer.email)) {
+                    throw new Error("Email already used");
+                }
 
                 business.addCustomer(newCustomer);
 
@@ -74,6 +77,9 @@ const apiServ = {
                     !testEmail.test(updatedCustomer.email)
                 ) {
                     throw new Error("Invalid customer information");
+                }
+                if (business.isEmailUsed(updatedCustomer.email)) {
+                    throw new Error("Email already used");
                 }
 
                 business.modifCustomer(customerId, updatedCustomer);
