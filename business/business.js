@@ -1,4 +1,3 @@
-const { deleteCustomer } = require("../data/datalayer");
 const dal = require("../data/datalayer");
 
 const defaultNumber = 10;
